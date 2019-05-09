@@ -76,6 +76,7 @@ jsdom.fromFile("./assets/index.html", options).then(function (dom) {
         var user = await got(`https://api.github.com/users/${username}`);
         user = JSON.parse(user.body);
         document.title = user.login;
+        document.getElementById("profile_link").setAttribute("href", user.html_url);
         var icon = document.createElement("link");
         icon.setAttribute("rel", "icon");
         icon.setAttribute("href", user.avatar_url);
@@ -83,13 +84,13 @@ jsdom.fromFile("./assets/index.html", options).then(function (dom) {
         document.getElementsByTagName("head")[0].appendChild(icon);
         document.getElementById("profile_img").style.background = `url('${user.avatar_url}') center center`
         document.getElementById("username").innerHTML = `<span>${user.name}</span><br>@${user.login}`;
-        //document.getElementById("github_link").href = `https://github.com/${user.login}`;
         document.getElementById("userbio").innerHTML = user.bio;
         document.getElementById("userbio").style.display = user.bio == null || !user.bio ? 'none' : 'block';
         document.getElementById("about").innerHTML = `
+        <span style="display:${user.company == null || !user.company ? 'none' : 'block'};"><i class="fas fa-users"></i> &nbsp; ${user.company}</span>
         <span style="display:${user.email == null || !user.email ? 'none' : 'block'};"><i class="fas fa-envelope"></i> &nbsp; ${user.email}</span>
-        <span style="display:${user.blog == null || !user.blog ? 'none' : 'block'};"><i class="fas fa-link"></i> &nbsp; ${user.blog}</span>
-        <span style="display:${user.location == null || !user.location ? 'none' : 'block'};"><i class="fas fa-map-marker-alt"></i> &nbsp;&nbsp; ${user.location}</span>`;
+        <span style="display:${user.location == null || !user.location ? 'none' : 'block'};"><i class="fas fa-map-marker-alt"></i> &nbsp;&nbsp; ${user.location}</span>
+        <span style="display:${user.blog == null || !user.blog ? 'none' : 'block'};"><i class="fas fa-link"></i> &nbsp; ${user.blog}</span>`;
         fs.writeFile('index.html', '<!DOCTYPE html>'+window.document.documentElement.outerHTML, function (error){
             if (error) throw error;
         });

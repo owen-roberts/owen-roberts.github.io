@@ -109,6 +109,16 @@ body{
     z-index:1;
 }
 
+
+#profile a{
+    color: #fff;
+    text-decoration: none;
+}
+
+#profile a:visited{
+    color: #fff;
+}
+
 #profile_blog {
     width:60vw;
     margin:0px 20vw;

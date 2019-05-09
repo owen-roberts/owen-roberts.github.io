@@ -8,18 +8,23 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="index.css">
 <link rel="icon" href="https://avatars1.githubusercontent.com/u/10622911?v=4" type="image/png"></head>
+
 <body>
     <div id="loading">
         <div id="spinner"></div>
     </div>
+
     <div id="profile">
-        <div id="profile_img" style="background: url(https://avatars1.githubusercontent.com/u/10622911?v=4) center;"></div>
-        <div id="username"><span>Owen Roberts</span><br>@ORoberts221</div>
-        <div id="userbio" style="display: block;">Web developer</div>
+        <a id="profile_link" target="_blank" href="https://github.com/ORoberts221">
+            <div id="profile_img" style="background: url(https://avatars1.githubusercontent.com/u/10622911?v=4) center;"></div>
+            <div id="username"><span>Owen Roberts</span><br>@ORoberts221</div>
+            <div id="userbio" style="display: block;">Web developer</div>
+        </a>
         <div id="about">
+        <span style="display:block;"><i class="fas fa-users"></i> &nbsp; @stormid</span>
         <span style="display:none;"><i class="fas fa-envelope"></i> &nbsp; null</span>
-        <span style="display:block;"><i class="fas fa-link"></i> &nbsp; owenroberts.dev</span>
-        <span style="display:block;"><i class="fas fa-map-marker-alt"></i> &nbsp;&nbsp; Edinburgh</span></div>
+        <span style="display:block;"><i class="fas fa-map-marker-alt"></i> &nbsp;&nbsp; Edinburgh</span>
+        <span style="display:block;"><i class="fas fa-link"></i> &nbsp; owenroberts.dev</span></div>
     </div>
     <div id="display">
         <div id="work">
@@ -57,22 +62,22 @@
             <div id="blogs"></div>
         </div> -->
         <div id="footer">
-           <p>Created using <a href="https://github.com/imfunniee/gitfolio" target="_blank">gitfolio</a></p> 
+            <p>Created using <a href="https://github.com/imfunniee/gitfolio" target="_blank">gitfolio</a></p>
         </div>
     </div>
     <script type="text/javascript">
-    setTimeout(function(){
-        document.getElementById("loading").classList.add("animated");
-        document.getElementById("loading").classList.add("fadeOut");
-        setTimeout(function(){
-        document.getElementById("loading").classList.remove("animated");
-        document.getElementById("loading").classList.remove("fadeOut");
-        document.getElementById("loading").style.display = "none";
-        },800);
-    },1500);
-    $.getJSON("./blog/blog.json", function(blog){
-        for(var i = 0; i < blog.length; i++){
-            $("#blogs").append(`
+        setTimeout(function () {
+            document.getElementById("loading").classList.add("animated");
+            document.getElementById("loading").classList.add("fadeOut");
+            setTimeout(function () {
+                document.getElementById("loading").classList.remove("animated");
+                document.getElementById("loading").classList.remove("fadeOut");
+                document.getElementById("loading").style.display = "none";
+            }, 800);
+        }, 1500);
+        $.getJSON("./blog/blog.json", function (blog) {
+            for (var i = 0; i < blog.length; i++) {
+                $("#blogs").append(`
             <a href="/blog/${blog[i].url_title}/" target="_blank">
                 <section>
                     <img src="${blog[i].top_image}">
@@ -85,8 +90,9 @@
                 </section>
             </a>
             `)
-        }
-    });
+            }
+        });
     </script>
+
 
 </body></html>
