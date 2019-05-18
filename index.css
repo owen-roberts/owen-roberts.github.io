@@ -1,10 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 @import url('https://fonts.googleapis.com/css?family=Questrial');
 
-h2 .description {
+h2 + .description {
     font-size:15px;
     font-weight: lighter;
-    margin-left:7px;
+    display: inline-block;
+    margin-left: 7px;
 }
 
 body{
@@ -75,6 +76,8 @@ body{
 
 #display h2 {
     font-size:50px;
+    display: inline-block;
+    margin-bottom: 0px;
     color:var(--text-color);
     font-weight:bold;
     font-family: 'Questrial', sans-serif;
@@ -375,6 +378,10 @@ body{
 }
 
 @media (max-width: 800px){
+    h2 + .description {
+        display: block;
+        margin-left: 0px;
+    }
     #profile {
         width:90vw;
         padding:4vh 5vw;
