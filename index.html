@@ -15,11 +15,9 @@
     </div>
 
     <div id="profile">
-        <a id="profile_link" target="_blank" href="https://github.com/ORoberts221">
-            <div id="profile_img" style="background: url(https://avatars1.githubusercontent.com/u/10622911?v=4) center;"></div>
-            <div id="username"><span>Owen Roberts</span><br>@ORoberts221</div>
-            <div id="userbio" style="display: block;">Web developer</div>
-        </a>
+        <div id="profile_img" style="background: url(https://avatars1.githubusercontent.com/u/10622911?v=4) center;"></div>
+        <div id="username"><span>Owen Roberts</span><br>@ORoberts221</div>
+        <div id="userbio" style="display: block;">Web developer</div>
         <div id="about">
         <span style="display:block;"><i class="fas fa-users"></i> &nbsp; @stormid</span>
         <span style="display:none;"><i class="fas fa-envelope"></i> &nbsp; null</span>
@@ -28,8 +26,21 @@
     </div>
     <div id="display">
         <div id="work">
-            <h1>Projects</h1>
-            <div id="projects">
+            <h2>Projects <span class="description">experiments and demos, hosted using github pages</span></h2>
+            <div id="ghpages" class="signposts">
+                    <a href="https://www.owenroberts.dev/red-ball" target="_blank">
+                    <section>
+                        <div class="section_title">red-ball</div>
+                        <div class="about_section">
+                        An expermient with React and Matter.js
+                        </div>
+                        <div class="bottom_section">
+                            <span><i class="fas fa-code"></i>&nbsp; JavaScript</span>
+                        </div>
+                    </section>
+                    </a></div>
+            <h2>Repos <span class="description">source code for projects I'm working on</span></h2>
+            <div id="repos" class="signposts">
                     <a href="https://github.com/ORoberts221/ORoberts221.github.io" target="_blank">
                     <section>
                         <div class="section_title">ORoberts221.github.io</div>
@@ -38,29 +49,23 @@
                         </div>
                         <div class="bottom_section">
                             <span><i class="fas fa-code"></i>&nbsp; CSS</span>
-                            <span><i class="fas fa-star"></i>&nbsp; 0</span>
-                            <span><i class="fas fa-code-branch"></i>&nbsp; 0</span>
-                        </div>
-                    </section>
-                    </a>
-                    <a href="https://github.com/ORoberts221/red-ball" target="_blank">
-                    <section>
-                        <div class="section_title">red-ball</div>
-                        <div class="about_section">
-                        An expermient with React and Matter.js
-                        </div>
-                        <div class="bottom_section">
-                            <span><i class="fas fa-code"></i>&nbsp; JavaScript</span>
-                            <span><i class="fas fa-star"></i>&nbsp; 0</span>
-                            <span><i class="fas fa-code-branch"></i>&nbsp; 0</span>
                         </div>
                     </section>
                     </a></div>
+            <h2>Gists <span class="description">interesting or helpful snippets</span></h2>
+            <div id="gists" class="signposts">
+            <a href="https://gist.github.com/5ea3433d491629304266b6c984063a16" target="_blank">
+            <section>
+                <div class="section_title">pre-commit</div>
+                <div class="about_section">
+                Git pre-commit hook to prevent a commit unless Umbraco published content models are up to date.
+                </div>
+                <div class="bottom_section">
+                    <span><i class="fas fa-code"></i>&nbsp; Shell</span>
+                </div>
+            </section>
+            </a></div>
         </div>
-        <!-- <div id="blog_section" style="display:none;">
-            <h1>Blog.</h1>
-            <div id="blogs"></div>
-        </div> -->
         <div id="footer">
             <p>Created using <a href="https://github.com/imfunniee/gitfolio" target="_blank">gitfolio</a></p>
         </div>

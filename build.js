@@ -35,16 +35,10 @@ function populateCSS(){
 }
 
 
-if (program.background) {
-    dark = `:root {--bg-color: rgb(10, 10, 10);--text-color: #fff;--blog-gray-color:rgb(180, 180, 180);--background-image: linear-gradient(90deg, rgba(10, 10, 10, 0.6), rgb(10, 10, 10, 1)), url('${('%s', program.background)}');--background-background: linear-gradient(0deg, rgba(10, 10, 10, 1), rgba(10, 10, 10, 0.6)),url('${('%s', program.background)}') center center fixed;--height:50vh;} #display h1 {-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color: #fff;} #blog-display h1 {-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color: #fff;}#projects section {background:rgb(20, 20, 20);}#blog_section section {background:rgb(20, 20, 20);}@media (max-width: 800px){ --background-image: linear-gradient(0deg, rgba(10, 10, 10, 1), rgb(10, 10, 10, 0)), url('${('%s', program.background)}') !important;}`;
 
-    light = `:root {--bg-color: #fff;--text-color: rgb(10, 10, 10);--blog-gray-color:rgb(80, 80, 80);--background-image: linear-gradient(90deg, rgba(10, 10, 10, 0.4), rgb(10, 10, 10, 0.4)), url('${('%s', program.background)}');--background-background: #fff;}`
-    populateCSS();
-}else{
-    dark = `:root {--bg-color: rgb(10, 10, 10);--text-color: #fff;--blog-gray-color:rgb(180, 180, 180);--background-image: linear-gradient(90deg, rgba(10, 10, 10, 0.6), rgb(10, 10, 10, 1)), url('https://images.unsplash.com/photo-1553748024-d1b27fb3f960?w=1450');--background-background: linear-gradient(0deg, rgba(10, 10, 10, 1), rgba(10, 10, 10, 0.6)),url('https://images.unsplash.com/photo-1553748024-d1b27fb3f960?w=1450') center center fixed;--height:50vh;} #display h1 {-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color: #fff;} #blog-display h1 {-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color: #fff;}#projects section {background:rgb(20, 20, 20);}#blog_section section {background:rgb(20, 20, 20);}@media (max-width: 800px){ --background-image: linear-gradient(0deg, rgba(10, 10, 10, 1), rgb(10, 10, 10, 0)), url('https://images.unsplash.com/photo-1553748024-d1b27fb3f960?w=1450') !important;}`;
-    light = `:root {--bg-color: #fff;--text-color: rgb(10, 10, 10);--blog-gray-color:rgb(80, 80, 80);--background-image: linear-gradient(90deg, rgba(10, 10, 10, 0.4), rgb(10, 10, 10, 0.4)), url('https://images.unsplash.com/photo-1553748024-d1b27fb3f960?w=1450');--background-background: #fff;}`;
-    populateCSS();
-}
+dark = `:root {--bg-color: rgb(10, 10, 10);--text-color: #fff;--blog-gray-color:rgb(180, 180, 180);--background-image: linear-gradient(90deg, rgba(10, 10, 10, 0.6), rgb(10, 10, 10, 1)), url('./assets/img/edinburgh-carlton-hill-portrait.jpeg');--background-background: linear-gradient(0deg, rgba(10, 10, 10, 1), rgba(10, 10, 10, 0.6)),url('./assets/img/edinburgh-carlton-hill-portrait.jpeg') center center fixed;--height:50vh;} #display h1 {-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color: #fff;} #blog-display h1 {-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color: #fff;}.signposts section {background:rgb(20, 20, 20);}#blog_section section {background:rgb(20, 20, 20);}@media (max-width: 800px){ --background-image: linear-gradient(0deg, rgba(10, 10, 10, 1), rgb(10, 10, 10, 0)), url('./assets/img/edinburgh-carlton-hill-portrait.jpeg !important;}`;
+light = `:root {--bg-color: #fff;--text-color: rgb(10, 10, 10);--blog-gray-color:rgb(80, 80, 80);--background-image: linear-gradient(90deg, rgba(10, 10, 10, 0.4), rgb(10, 10, 10, 0.4)), url('./assets/img/edinburgh-carlton-hill-portrait.jpeg');--background-background: #fff;}`
+populateCSS();
 
 function populateHTML(username){
 //add data to assets/index.html
@@ -53,12 +47,21 @@ jsdom.fromFile("./assets/index.html", options).then(function (dom) {
     (async () => {
         try {
             console.log("Building HTML/CSS...");
+            //Add repos
             var repos = await got(`https://api.github.com/users/${username}/repos?sort=created`);
             repos = JSON.parse(repos.body);
             for(var i = 0;i < repos.length;i++){
                 if(repos[i].fork == false){
-                    document.getElementById("projects").innerHTML += `
-                    <a href="${repos[i].html_url}" target="_blank">
+                    var id = "repos";
+                    var url = repos[i].html_url;
+
+                    if(repos[i].homepage){
+                        id = "ghpages";
+                        url = repos[i].homepage;
+                    }
+
+                    document.getElementById(id).innerHTML += `
+                    <a href="${url}" target="_blank">
                     <section>
                         <div class="section_title">${repos[i].name}</div>
                         <div class="about_section">
@@ -66,17 +69,36 @@ jsdom.fromFile("./assets/index.html", options).then(function (dom) {
                         </div>
                         <div class="bottom_section">
                             <span><i class="fas fa-code"></i>&nbsp; ${repos[i].language}</span>
-                            <span><i class="fas fa-star"></i>&nbsp; ${repos[i].stargazers_count}</span>
-                            <span><i class="fas fa-code-branch"></i>&nbsp; ${repos[i].forks_count}</span>
                         </div>
                     </section>
                     </a>`;
-                }
+                }           
             }
+
+        //Add gists
+        var gists = await got(`https://api.github.com/users/${username}/gists`);
+        gists = JSON.parse(gists.body);
+        for(var i = 0;i < gists.length;i++){
+            var file = Object.values(gists[i].files)[0];
+            document.getElementById('gists').innerHTML += `
+            <a href="${gists[i].html_url}" target="_blank">
+            <section>
+                <div class="section_title">${file.filename}</div>
+                <div class="about_section">
+                ${gists[i].description}
+                </div>
+                <div class="bottom_section">
+                    <span><i class="fas fa-code"></i>&nbsp; ${file.language}</span>
+                </div>
+            </section>
+            </a>`;                     
+        }
+
+        //Add user info
         var user = await got(`https://api.github.com/users/${username}`);
         user = JSON.parse(user.body);
         document.title = user.login;
-        document.getElementById("profile_link").setAttribute("href", user.html_url);
+        // document.getElementById("profile_link").setAttribute("href", user.html_url);
         var icon = document.createElement("link");
         icon.setAttribute("rel", "icon");
         icon.setAttribute("href", user.avatar_url);

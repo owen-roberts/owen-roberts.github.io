@@ -1,6 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 @import url('https://fonts.googleapis.com/css?family=Questrial');
 
+h2 .description {
+    font-size:15px;
+    font-weight: lighter;
+    margin-left:7px;
+}
+
 body{
     margin:0%;
     padding:0%;
@@ -67,7 +73,7 @@ body{
     padding-left:33vw;
 }
 
-#display h1 {
+#display h2 {
     font-size:50px;
     color:var(--text-color);
     font-weight:bold;
@@ -260,11 +266,17 @@ body{
     padding:4vh 0px !important;
 }
 
-#projects {
-    columns:2;
+.signposts {
+    display: flex;
+    flex-wrap: wrap;
 }
 
-#projects section {
+.signposts > * {
+    flex: 50%;
+    max-width: 50%;
+}
+
+.signposts section {
     width:85%;
     padding:2.5vh 5%;
     display:inline-block;
@@ -277,7 +289,7 @@ body{
     transform:scale(1);
 }
 
-#projects section:hover {
+.signposts section:hover {
     cursor: pointer;
     border:1px solid rgb(0, 0, 0, 0);
     box-shadow:0px 15px 35px rgb(0, 0, 0, 0.06);
@@ -385,10 +397,15 @@ body{
     #work {
         margin:0px;
     }
-    #projects {
+    .signposts {
+        display: flex;
         columns:1;
     }
-    #projects section {
+    .signposts > * {
+        flex: 100%;
+        max-width: 100%;
+    }
+    .signposts section {
         width:88%;
     }
     #blogs {
@@ -431,4 +448,4 @@ body{
 
 ::-webkit-scrollbar {width:5px;height:5px;}
 ::-webkit-scrollbar-track {background:var(--bg-color);}
-::-webkit-scrollbar-thumb {background:var(--text-color);}:root {--bg-color: rgb(10, 10, 10);--text-color: #fff;--blog-gray-color:rgb(180, 180, 180);--background-image: linear-gradient(90deg, rgba(10, 10, 10, 0.6), rgb(10, 10, 10, 1)), url('https://images.unsplash.com/photo-1553748024-d1b27fb3f960?w=1450');--background-background: linear-gradient(0deg, rgba(10, 10, 10, 1), rgba(10, 10, 10, 0.6)),url('https://images.unsplash.com/photo-1553748024-d1b27fb3f960?w=1450') center center fixed;--height:50vh;} #display h1 {-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color: #fff;} #blog-display h1 {-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color: #fff;}#projects section {background:rgb(20, 20, 20);}#blog_section section {background:rgb(20, 20, 20);}@media (max-width: 800px){ --background-image: linear-gradient(0deg, rgba(10, 10, 10, 1), rgb(10, 10, 10, 0)), url('https://images.unsplash.com/photo-1553748024-d1b27fb3f960?w=1450') !important;}
+::-webkit-scrollbar-thumb {background:var(--text-color);}:root {--bg-color: rgb(10, 10, 10);--text-color: #fff;--blog-gray-color:rgb(180, 180, 180);--background-image: linear-gradient(90deg, rgba(10, 10, 10, 0.6), rgb(10, 10, 10, 1)), url('./assets/img/edinburgh-carlton-hill-portrait.jpeg');--background-background: linear-gradient(0deg, rgba(10, 10, 10, 1), rgba(10, 10, 10, 0.6)),url('./assets/img/edinburgh-carlton-hill-portrait.jpeg') center center fixed;--height:50vh;} #display h1 {-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color: #fff;} #blog-display h1 {-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color: #fff;}.signposts section {background:rgb(20, 20, 20);}#blog_section section {background:rgb(20, 20, 20);}@media (max-width: 800px){ --background-image: linear-gradient(0deg, rgba(10, 10, 10, 1), rgb(10, 10, 10, 0)), url('./assets/img/edinburgh-carlton-hill-portrait.jpeg !important;}
