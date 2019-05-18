@@ -51,8 +51,8 @@
                 document.getElementById("loading").classList.remove("animated");
                 document.getElementById("loading").classList.remove("fadeOut");
                 document.getElementById("loading").style.display = "none";
-            }, 800);
-        }, 1500);
+            }, 400);
+        }, 750);
         $.getJSON("./blog/blog.json", function (blog) {
             for (var i = 0; i < blog.length; i++) {
                 $("#blogs").append(`
