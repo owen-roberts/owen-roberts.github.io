@@ -10,7 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "commander": "^2.20.0",
-    "got": "^9.6.0",
+    "got": "^11.8.5",
     "jsdom": "^15.0.0"
   }
 }
