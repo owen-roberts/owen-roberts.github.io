@@ -11,6 +11,6 @@
   "dependencies": {
     "commander": "^2.20.0",
     "got": "^9.6.0",
-    "jsdom": "^15.0.0"
+    "jsdom": "^16.5.0"
   }
 }
